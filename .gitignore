@@ -1,4 +1,4 @@
-/node_modules
+/npm/node_modules
 /vendor
 /.vagrant
 .DS_Store
