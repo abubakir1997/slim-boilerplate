@@ -1,4 +1,8 @@
+# Folders
 /npm/node_modules
 /vendor
 /.vagrant
 .DS_Store
+
+# Files
+*.log
