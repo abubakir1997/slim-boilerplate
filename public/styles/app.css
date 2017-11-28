@@ -121,6 +121,11 @@ body
         width: 100%;
         border-radius: 0px;
     }
+
+    #app-nav 
+    {
+        background-position: center top;
+    }
 }
 
 @media print 
@@ -130,7 +135,7 @@ body
         background: white;
     }
 
-    #app-nav 
+    #app-nav
     {
         display: none;
     }
