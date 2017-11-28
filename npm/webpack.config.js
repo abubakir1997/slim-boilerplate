@@ -44,8 +44,8 @@ const options =
 {
 	style: 
 	{
-		minimize: true,
-		modules: true,
+		minimize      : true,
+		modules       : true,
 		localIdentName: '[hash:base64:5]_[name]_[local]'
 	}
 };
@@ -66,16 +66,16 @@ const plugins =
 	{
 		compress: 
 		{
-			warnings: false,
-			screw_ie8: true,
+			warnings    : false,
+			screw_ie8   : true,
 			conditionals: true,
-			unused: true,
-			comparisons: true,
-			sequences: true,
-			dead_code: true,
-			evaluate: true,
-			if_return: true,
-			join_vars: true
+			unused      : true,
+			comparisons : true,
+			sequences   : true,
+			dead_code   : true,
+			evaluate    : true,
+			if_return   : true,
+			join_vars   : true
 		},
 		output: 
 		{
@@ -131,10 +131,10 @@ const extensions =
 module.exports = {
 	entry,
 	devtool: 'source-map',
-	output: 
+	output : 
 	{
-		path: js.dist,
-		filename: '[name].min.js?[hash]',
+		path         : js.dist,
+		filename     : '[name].min.js?[hash]',
 		chunkFilename: '[id].min.js?[hash]'
 	},
 	module: 
