@@ -18,6 +18,13 @@ body,
     left: 0;
 }
 
+#bg-container,
+#bg-grid
+{
+    overflow-y: auto;
+    padding-top: 75px;
+}
+
 #bg-column
 {
     min-width: 450px;
