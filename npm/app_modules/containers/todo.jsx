@@ -1,9 +1,9 @@
-import React from 'react';
-import tasks from 'reducers/todo';
-import App 	 from 'components/todo/App';
-import { render } 		from 'react-dom';
-import { createStore } 	from 'redux';
-import { Provider } 	from 'react-redux';
+import React           from 'react';
+import tasks           from 'reducers/todo';
+import App             from 'components/todo/App';
+import { render }      from 'react-dom';
+import { createStore } from 'redux';
+import { Provider }    from 'react-redux';
 
 const store = createStore(
     tasks,

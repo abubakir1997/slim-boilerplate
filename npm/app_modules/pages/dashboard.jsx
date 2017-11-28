@@ -9,3 +9,4 @@ ajax
 		console.log('Ajax Request: from dashboard', res.data);
 	})
 ;
+

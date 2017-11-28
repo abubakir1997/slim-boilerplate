@@ -1,5 +1,5 @@
-import React from 'react';
-import Styles from 'styles/todo';
+import React       from 'react';
+import Styles      from 'styles/todo';
 import { connect } from 'react-redux';
 
 const Title = ({ cardsCount }) => (

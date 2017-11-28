@@ -1,6 +1,6 @@
-import React from 'react';
-import Card from 'components/todo/Card';
-import Styles from 'styles/todo';
+import React       from 'react';
+import Card        from 'components/todo/Card';
+import Styles      from 'styles/todo';
 import { connect } from 'react-redux';
 import {
     changeTaskStatus, 

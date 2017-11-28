@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import Styles from 'styles/todo';
 
 const Card = ({ 
