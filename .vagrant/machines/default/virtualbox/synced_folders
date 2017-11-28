@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/Users/AbuBakr/Sites/slimapp","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/AbuBakr/Sites/slimapp","disabled":false,"__vagrantfile":true}}}
