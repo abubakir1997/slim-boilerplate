@@ -76,3 +76,15 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 ~/slimapp » sudo service apache2 restart
 ~/slimapp » sudo service mysql restart
 ```
+
+## Setup User
+
+First Run Migration
+```
+~/slimapp » composer migrate 20171119201335
+```
+
+Then add user with credentials (manually for now):
+
+- username: admin
+- password: admin 
