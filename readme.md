@@ -3,24 +3,29 @@
 Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applications.
 
 ## Languages
+
 1. Linux Ubuntu Server
 2. Apache2
 3. MySQL
 4. PHP 7+
 
 ##Support
+
 1. MVC Architecture
 2. Multi-App Support
 3. Multi-DB Support
 4. Logging
 
 ##Features
+
 1. Twig Template
 2. Eloquent ORM
 3. Phinx Migration
 4. NPM
 5. ReactJS
 6. Semantic UI React
+7. Redux
+
 ---
 ## Setup Dependencies
 ```
