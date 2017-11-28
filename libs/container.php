@@ -4,14 +4,15 @@ namespace Libs;
 
 use \Core\Controller;
 use \Libs\Twig as TwigExtension;
+
 use \Apps\Middlewares\Csrf;
 
 use \Monolog\Logger as MonologLogger;
 use \Monolog\Handler\StreamHandler as MonologStream;
 use \Monolog\Handler\FingersCrossedHandler as MonologFingersCrossed;
 
-use \Slim\Container as SlimContainer;
 use \Slim\Views\Twig as SlimTwig;
+use \Slim\Container as SlimContainer;
 use \Slim\Flash\Messages as SlimMessages;
 use \Slim\Views\TwigExtension as SlimTwigExtension;
 use \Knlv\Slim\Views\TwigMessages as SlimTwigMessages;
@@ -22,6 +23,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 class Container extends SlimContainer
 {
 	public $groups = [];
+	public $jwt;
 
 	/**
 	 * Application Main Groups
@@ -56,13 +58,6 @@ class Container extends SlimContainer
 		Session::init();
 		
 		$this['flash'] = new SlimMessages;
-		$this['csrf']  = function(SlimContainer $c) : Csrf
-		{
-			$guard = new Csrf;
-			$guard->setFlash($c->flash);
-
-			return $guard;
-		};
 		$this['view']  = function(SlimContainer $c) : SlimTwig
 		{
 			$views = Config::get('app.views');
@@ -85,6 +80,23 @@ class Container extends SlimContainer
 			]);
 
 			return $view;
+		};
+	}
+
+	/**
+	 * Application Authentications
+	 * Modifies Twig Class
+	 * @return void
+	 * @author Abdelrahman Salem
+	 **/
+	public function authentication()
+	{
+		$this['csrf']  = function(SlimContainer $c) : Csrf
+		{
+			$guard = new Csrf;
+			$guard->setFlash($c->flash);
+
+			return $guard;
 		};
 	}
 

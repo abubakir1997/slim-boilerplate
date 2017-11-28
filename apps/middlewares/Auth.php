@@ -3,8 +3,11 @@
 namespace Apps\Middlewares;
 
 use \Libs\Session;
+use \Libs\Config;
 use \Core\Middleware;
 use \Apps\Models\Tables\User;
+
+use \Firebase\JWT\JWT as Token;
 use \Psr\Http\Message\RequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -12,20 +15,31 @@ class Auth extends Middleware
 {	
 	public function __invoke(Request $req, Response $res, callable $next) : Response
 	{
-		$get   = $req->isGet();
-		$token = $get 	? Session::get('token', true) 			  : $req->getHeader('Authorization');
-		$user  = $token ? User::where('token', $token)->first()   : null;
-		$auth  = $user 	? strtotime($user->token_expire) > time() : false;
+		$auth = $this->verify($req);
 
-		if ($get) 
+		if ($req->isGet())
 		{
 			$redirect = $this->container->router->pathFor('signout');
 			return !$auth ? $res->withRedirect($redirect) : $next($req, $res);
 		}
 		else
 		{
-			$json = ['error' => 'Invalid Request'];
+			$json = ['error' => 'Token not Found'];
 			return !$auth ? $res->withJson($json) : $next($req, $res);
 		}
+	}
+
+	public function verify(Request $req)
+	{
+		$header = sizeof($req->getHeader('Authorization')) > 1;
+		$secret = Config::get('app.secret', '');
+		$token  = $header ? $req->getHeader('Authorization') : Session::get('jwtToken', true);
+		$decode = isset($token) ? Token::decode($token, $secret, ['HS256']) : null;
+		$user   = $decode ? User::find($decode->user) : null;
+		$auth   = $user ? strtotime($decode->expire) > time() : false;
+		
+		$this->container->jwt = $decode;
+		
+		return $auth;
 	}
 }

@@ -99,4 +99,4 @@ First Run Migration
 Then add user with credentials **(manually for now)**:
 
 - username: **admin**
-- password: **admin** 
+- password: **admin** hash(7ea9cb6e82629f154c9829eb73646eff)

@@ -3,6 +3,7 @@
 //Classes
 use \Libs\App;
 use \Libs\Container;
+use \Apps\Middlewares\Auth;
 
 //Initiate App Container
 $container = new Container();
@@ -17,6 +18,9 @@ $container->logger();
 $container->view();
 $container->errors();
 
+//Create Authentication
+$container->authentication();
+
 //Create Controllers
 $container->controllers();
 
@@ -25,7 +29,7 @@ $app = new App($container);
 
 //Import Routes
 $siteGroup = $app->routes($container, /*$folder =*/ 'site');
-$appGroup  = $app->routes($container, /*$folder =*/ 'app', /*$prefix =*/ '/app', /*$auth =*/ true);
+$appGroup  = $app->routes($container, /*$folder =*/ 'app', /*$prefix =*/ '/app');
 
 //Middlewares
-$appGroup->add($container->get('csrf'));
+$appGroup->add(new Auth($container))->add($container->get('csrf'));

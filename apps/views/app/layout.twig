@@ -5,8 +5,8 @@
 {% block scripts %}
 <script>
 	localStorage.clear();
-	localStorage.setItem('token', '{{session("token", true)}}');
 	localStorage.setItem('base',  '{{ base_url() }}{{ api|default("/app") }}');
+	localStorage.setItem('jwtToken', '{{session("jwtToken", true)}}');
 	localStorage.setItem('csrfToken', '{{ csrf.value }}');
 	localStorage.setItem('csrfKey', '{{ csrf.name }}');
 </script>

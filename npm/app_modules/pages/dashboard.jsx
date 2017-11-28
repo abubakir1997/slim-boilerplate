@@ -4,9 +4,8 @@ import 'containers/todo';
 console.log('React App: from Dashboard!');
 
 ajax
-	.post('/test')
+	.post('/jwt')
 	.then(function(res) {
-		console.log('Ajax Request: from dashboard', res.data);
+		console.log('JWT Request: from dashboard', res.data);
 	})
 ;
-

@@ -10,6 +10,6 @@ $this->get(
 	'AppDashboardController:get'
 );
 
-$this->post('/test', function($req, $res) {
-	return $res->withJson(['status' => 'Success!']);
+$this->post('/jwt', function($req, $res) {
+	return $res->withJson($this->jwt);
 });

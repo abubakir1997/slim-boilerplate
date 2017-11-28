@@ -1,7 +1,5 @@
 <?php
 
-use \Apps\Middlewares\Guest;
-
 $this->get(
 	'/',
 	'SiteHomeController:get'

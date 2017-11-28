@@ -2,8 +2,6 @@
 
 namespace Libs;
 
-use \Apps\Middlewares\Auth;
-
 use \Slim\App as SlimApp;
 use \Slim\Container as SlimContainer;
 
@@ -19,9 +17,8 @@ class App extends SlimApp
 	 *
 	 * @var folder to import
 	 * @var prefix to assign
-	 * @var guard add csrf protection
 	 **/
-	public function routes(SlimContainer $container, string $folder, string $prefix = '', bool $auth = false)
+	public function routes(SlimContainer $container, string $folder, string $prefix = '')
 	{
 		$container->groups[$folder] = $prefix;
 		$group = $this->group($prefix, function () use(&$folder, &$container) {
@@ -30,11 +27,6 @@ class App extends SlimApp
 				require_once $route;
 			}
 		});
-
-		if ($auth)
-		{
-			$group->add(new Auth($container));
-		}
 
 		return $group;
 	}

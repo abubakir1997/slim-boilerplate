@@ -2,9 +2,12 @@
 
 namespace Apps\Controllers\Site;
 
+use \Libs\Config;
 use \Libs\Helpers;
 use \Libs\Session;
 use \Core\Controller;
+
+use \Firebase\JWT\JWT as Token;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -30,17 +33,15 @@ class Sign extends Controller
 
 		if ($user)
 		{
-			$keep  = boolval($req->getParam('keep'));
-			$store = $keep ? '+30 days' : '+1 hours';
-
-			$user->token = bin2hex(openssl_random_pseudo_bytes(8));
-			$user->token_expire = date("Y-m-d H:i:s", strtotime($store));
-			$user->save();
-			Session::set('token', $user->token, $keep);
-			Session::set('expire', $user->token_expire);
-			Session::set('user', [
-				'username' => $user->username
-			]);
+			$secret  = Config::get('app.secret', '');
+			$keep    = boolval($req->getParam('keep'));
+			$store   = $keep ? '+30 days' : '+8 hours';
+			$payload = [
+				'user'   => $user->id,
+				'expire' => date("Y-m-d H:i:s", strtotime($store))
+			];
+			
+			Session::set('jwtToken', Token::encode($payload, $secret), $keep);
 			
 			$redirect = $this->router->pathFor('dashboard');
 		}
@@ -57,18 +58,6 @@ class Sign extends Controller
 
 	public function destroy(Request $req, Response $res) : Response
 	{
-		$user = $this->table->where(
-			'token', 
-			Session::get('token', true)
-		)->first();
-
-		if ($user)
-		{
-			$user->token = null;
-			$user->token_expire = null;
-			$user->save();
-		}
-
 		Session::destory();
 
 		$redirect = $this->router->pathFor('signin');
