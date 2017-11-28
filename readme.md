@@ -86,5 +86,5 @@ First Run Migration
 
 Then add user with credentials (manually for now):
 
-- username: admin
-- password: admin 
+- username: **admin**
+- password: **admin** 
