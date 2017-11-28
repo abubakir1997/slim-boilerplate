@@ -9,14 +9,14 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 3. MySQL
 4. PHP 7+
 
-##Support
+## Support
 
 1. MVC Architecture
 2. Multi-App Support
 3. Multi-DB Support
 4. Logging
 
-##Features
+## Features
 
 1. Twig Template
 2. Eloquent ORM
