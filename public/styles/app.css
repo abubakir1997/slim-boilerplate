@@ -1,0 +1,145 @@
+/* General */
+
+html,
+body 
+{
+    padding:0;
+    margin: 0;
+    height: 100%;
+}
+
+body 
+{
+    background: #E0E0E0;
+}
+
+/* App Nav */
+
+#app-nav 
+{
+    background: linear-gradient( rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("/images/header.jpeg");
+    background-position: center bottom;
+    background-size: 100% auto;
+    padding: 1em;
+    padding-bottom: 4em;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* App Menu */
+
+#app-menu 
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+#app-menu li 
+{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+#app-menu li a 
+{
+    width: 111px;
+    display: inline-block;
+    padding: 1.5em 1em;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+#app-menu li a.active,
+#app-menu li a:hover 
+{
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#app-menu li a .label 
+{
+    margin-top: 10px !important;
+}
+
+#app-menu 
+{
+    position: relative;
+}
+
+#app-profile 
+{
+    position: absolute !important;
+    bottom: 0;
+}
+
+#app-profile .image.white  
+{
+    background-color: white;
+}
+
+/* App Content */
+
+#app-content 
+{
+    width: 90%;
+    min-height: calc(100% - 150px);
+    overflow-y: scroll;
+    background: #fff;
+    margin: 10px auto;
+    margin-top: -3em;
+    border-radius: 5px;
+    padding: 3em 1em;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#app-popup-container
+{
+    display: none;
+}
+
+#app-popup > .row
+{
+    margin-bottom: 5px;
+}
+
+/* Media */
+
+@media only screen and (max-device-width: 480px) 
+{
+    #app-content 
+    {
+        width: 100%;
+        border-radius: 0px;
+    }
+}
+
+@media print 
+{
+    body 
+    {
+        background: white;
+    }
+
+    #app-nav 
+    {
+        display: none;
+    }
+
+    #app-content
+    {
+        margin-top: 0.1px;
+        height: auto !important;
+        width: 100%;
+        box-shadow: none;
+    }
+}

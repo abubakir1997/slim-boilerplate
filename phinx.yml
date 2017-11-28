@@ -1,0 +1,18 @@
+paths:
+    migrations: %%PHINX_CONFIG_DIR%%/db/migrations
+    seeds: %%PHINX_CONFIG_DIR%%/db/seeds
+
+environments:
+    default_migration_table: migration
+    default_database: dev
+    
+    dev:
+        adapter: mysql
+        host: 192.168.33.13
+        name: App
+        user: admin
+        pass: 'admin'
+        port: 3306
+        charset: utf8
+
+version_order: creation

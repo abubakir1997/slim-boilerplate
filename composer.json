@@ -1,0 +1,38 @@
+{
+    "name": "abubakir1997/slim",
+    "description": "Base Slim 3 MVC Architecture",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.9",
+        "slim/twig-view": "^2.3",
+        "monolog/monolog": "^1.23",
+        "slim/flash": "^0.4.0",
+        "kanellov/slim-twig-flash": "^0.2.0",
+        "robmorgan/phinx": "^0.9.1",
+        "illuminate/database": "^5.5",
+        "slim/csrf": "^0.8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Libs\\": "libs/",
+            "Core\\": "core/",
+            "Apps\\Controllers\\": "apps/controllers/",
+            "Apps\\Models\\": "apps/models/",
+            "Apps\\Middlewares\\": "apps/middlewares/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdelrahmam Salem",
+            "email": "abubakir1997@gmail.com"
+        }
+    ],
+    "scripts": {
+        "build": "cd npm && npm run build",
+        "dev": "cd npm && npm run dev",
+        "clean": "cd npm && npm run clean",
+        
+        "migrate": "vendor/bin/phinx migrate -t $1",
+        "rollback": "vendor/bin/phinx rollback -t $1"
+    }
+}

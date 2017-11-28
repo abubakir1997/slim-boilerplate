@@ -1,0 +1,129 @@
+{% extends 'layout.twig' %}
+{% block links %}
+<link rel="stylesheet" href="/styles/app.css">
+{% endblock %}
+{% block scripts %}
+<script>
+	localStorage.clear();
+	localStorage.setItem('token', '{{session("token", true)}}');
+	localStorage.setItem('base',  '{{ base_url() }}{{ api|default("/app") }}');
+	localStorage.setItem('csrfToken', '{{ csrf.value }}');
+	localStorage.setItem('csrfKey', '{{ csrf.name }}');
+</script>
+<script type="text/javascript" src="/scripts/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/semantic/components/transition.min.js"></script>
+<script type="text/javascript" src="/scripts/semantic/components/popup.min.js"></script>
+<script type="text/javascript" src="/scripts/app.js"></script>
+{% endblock %}
+
+{% block body %}
+{% set user = session('user') %}
+<div id="app-nav">
+	<ul id='app-menu'>
+		<li>
+			<a href="{{ path_for('dashboard') }}" 
+			   class="file-dashboard{% if path_is('dashboard') %} active{% endif %}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="dashboard large icon"></i>
+					</div>
+					<div class="label">Dashboard</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{#{{path_for('inventory')}}#}" 
+			   class="file-inventory{#{% if path_is('inventory') %} active{% endif %}#}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="database large icon"></i>
+					</div>
+					<div class="label">Inventory</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{#{{ path_for('invoice') }}#}" 
+			   class="file-invoice{#{% if path_is('invoice') %} active{% endif %}#}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="file text outline large icon"></i>
+					</div>
+					<div class="label">Invoice</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{#{{ path_for('orders') }}#}" 
+			   class="file-orders{#{% if path_is('orders') %} active{% endif %}#}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="shopping cart large icon"></i>
+					</div>
+					<div class="label">Ordering</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{#{{ path_for('shipping') }}#}" 
+			   class="file-shipping{#{% if path_is('shipping') %} active{% endif %}#}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="shipping large icon"></i>
+					</div>
+					<div class="label">Shipping</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{#{{ path_for('apps') }}#}" 
+			   class="file-apps{#{% if path_is('apps') %} active{% endif %}#}">
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<i class="grid layout large icon"></i>
+					</div>
+					<div class="label">Apps</div>
+				</div>
+			</a>
+		</li>
+		<li id="app-profile">
+			<a>
+				<div class="ui inverted mini statistic">
+					<div class="value">
+						<center>
+							<img class="ui mini circular image white" src="/{{
+								user.photo is defined ? 'uploads' : 'images'
+							}}/{{
+								user.photo|default('user.png')
+							}}">
+						</center>
+					</div>
+					<div class="label">{{ user.username|default('USER')|truncate(8) }}</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+<div id="app-popup-container">
+    <div id="app-popup">
+    	<div class="row">
+	        <a class="ui circular fluid button" href="{#{{ path_for('profile') }}#}">
+	            <i class="user icon"></i>
+	            <span>Profile</span>
+	        </a>
+	    </div>
+	    <div>
+	        <a class="ui circular red button" href="{{ path_for('signout') }}" onclick="localStorage.clear()">
+	            <i class="sign out icon"></i>
+	            <span>Log out</span>
+	        </a>
+	        <a class="ui circular icon button" href="{#{{ path_for('settings') }}#}">
+	            <i class="setting icon"></i>
+	        </a>
+	    </div>
+    </div>
+</div>
+<div id="app-content">
+	<div class="ui container" id='app-container'>{% block container %}{% endblock %}</div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'app/layout.twig' %}
+{% block title %}Dashboard{% endblock %}
+{% block links %}{{ parent() }}
+<link rel="stylesheet" href="/styles/bundled/dashboard.min.css">
+{% endblock %}
+{% block scripts %}{{ parent() }}
+<script type="application/javascript" src="/scripts/bundled/dashboard.min.js"></script>
+{% endblock %}
+
+{% block container %}
+<div id="react-app"></div>
+{% endblock %}
