@@ -84,7 +84,7 @@ First Run Migration
 ~/slimapp » composer migrate 20171119201335
 ```
 
-Then add user with credentials (manually for now):
+Then add user with credentials **(manually for now)**:
 
 - username: **admin**
 - password: **admin** 
