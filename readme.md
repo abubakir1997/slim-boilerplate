@@ -1,4 +1,4 @@
-# Slim/React App
+# Slim3  | ReactJS Boilerplate
 
 Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applications.
 
