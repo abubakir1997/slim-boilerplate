@@ -12,7 +12,7 @@ class Session
 		}
 	}
 
-	public static function set(string $key, $value, bool $keep = false, int $days = 30)
+	public static function set(string $key, $value, bool $keep = false, int $days = 365)
 	{
 		if (!$keep) 
 		{

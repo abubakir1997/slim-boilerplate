@@ -35,7 +35,7 @@ class Sign extends Controller
 		{
 			$secret  = Config::get('app.secret', '');
 			$keep    = boolval($req->getParam('keep'));
-			$store   = $keep ? '+30 days' : '+8 hours';
+			$store   = $keep ? '+1 years' : '+8 hours';
 			$payload = [
 				'user'   => $user->id,
 				'expire' => date("Y-m-d H:i:s", strtotime($store))

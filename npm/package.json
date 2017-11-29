@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "expect": "^21.2.1",
     "react": "^16.0.0",
     "react-autobind": "^1.0.6",
     "react-dom": "^16.0.0",

@@ -89,3 +89,41 @@ Stack trace:
 #2 /var/www/html/public/index.php(16): Slim\App->run()
 #3 {main}
   thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[28-Nov-2017 18:23:08 America/New_York] PHP Fatal error:  Uncaught RuntimeException: Unexpected data in output buffer. Maybe you have characters before an opening <?php tag? in /var/www/html/vendor/slim/slim/Slim/App.php:588
+Stack trace:
+#0 /var/www/html/vendor/slim/slim/Slim/App.php(377): Slim\App->finalize(Object(Slim\Http\Response))
+#1 /var/www/html/vendor/slim/slim/Slim/App.php(295): Slim\App->process(Object(Slim\Http\Request), Object(Slim\Http\Response))
+#2 /var/www/html/public/index.php(16): Slim\App->run()
+#3 {main}
+  thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[28-Nov-2017 18:23:19 America/New_York] PHP Notice:  Trying to get property of non-object in /var/www/html/apps/middlewares/Auth.php on line 41
+[28-Nov-2017 18:23:19 America/New_York] PHP Fatal error:  Uncaught RuntimeException: Unexpected data in output buffer. Maybe you have characters before an opening <?php tag? in /var/www/html/vendor/slim/slim/Slim/App.php:588
+Stack trace:
+#0 /var/www/html/vendor/slim/slim/Slim/App.php(377): Slim\App->finalize(Object(Slim\Http\Response))
+#1 /var/www/html/vendor/slim/slim/Slim/App.php(295): Slim\App->process(Object(Slim\Http\Request), Object(Slim\Http\Response))
+#2 /var/www/html/public/index.php(16): Slim\App->run()
+#3 {main}
+  thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[28-Nov-2017 18:23:27 America/New_York] PHP Notice:  Trying to get property of non-object in /var/www/html/apps/middlewares/Auth.php on line 41
+[28-Nov-2017 18:23:27 America/New_York] PHP Fatal error:  Uncaught RuntimeException: Unexpected data in output buffer. Maybe you have characters before an opening <?php tag? in /var/www/html/vendor/slim/slim/Slim/App.php:588
+Stack trace:
+#0 /var/www/html/vendor/slim/slim/Slim/App.php(377): Slim\App->finalize(Object(Slim\Http\Response))
+#1 /var/www/html/vendor/slim/slim/Slim/App.php(295): Slim\App->process(Object(Slim\Http\Request), Object(Slim\Http\Response))
+#2 /var/www/html/public/index.php(16): Slim\App->run()
+#3 {main}
+  thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[28-Nov-2017 18:23:28 America/New_York] PHP Notice:  Trying to get property of non-object in /var/www/html/apps/middlewares/Auth.php on line 41
+[28-Nov-2017 18:23:28 America/New_York] PHP Fatal error:  Uncaught RuntimeException: Unexpected data in output buffer. Maybe you have characters before an opening <?php tag? in /var/www/html/vendor/slim/slim/Slim/App.php:588
+Stack trace:
+#0 /var/www/html/vendor/slim/slim/Slim/App.php(377): Slim\App->finalize(Object(Slim\Http\Response))
+#1 /var/www/html/vendor/slim/slim/Slim/App.php(295): Slim\App->process(Object(Slim\Http\Request), Object(Slim\Http\Response))
+#2 /var/www/html/public/index.php(16): Slim\App->run()
+#3 {main}
+  thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[28-Nov-2017 18:24:16 America/New_York] PHP Fatal error:  Uncaught RuntimeException: Unexpected data in output buffer. Maybe you have characters before an opening <?php tag? in /var/www/html/vendor/slim/slim/Slim/App.php:588
+Stack trace:
+#0 /var/www/html/vendor/slim/slim/Slim/App.php(377): Slim\App->finalize(Object(Slim\Http\Response))
+#1 /var/www/html/vendor/slim/slim/Slim/App.php(295): Slim\App->process(Object(Slim\Http\Request), Object(Slim\Http\Response))
+#2 /var/www/html/public/index.php(16): Slim\App->run()
+#3 {main}
+  thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588

@@ -21,7 +21,7 @@ const dir =
 const js = 
 {
 	dist: path.resolve(dir.dist, 'scripts/bundled'),
-	src : path.resolve(dir.src , 'pages/*.jsx')
+	src : path.resolve(dir.src , 'build/*.jsx')
 };
 
 
@@ -85,7 +85,7 @@ const plugins =
 	config:
 	{
 		'process.env': {
-			'NODE_ENV': JSON.stringify('production')
+			'NODE_ENV': JSON.stringify('development')
 		}
 	}
 };

@@ -31,12 +31,13 @@ class Auth extends Middleware
 
 	public function verify(Request $req)
 	{
-		$header = sizeof($req->getHeader('Authorization')) > 1;
 		$secret = Config::get('app.secret', '');
+		$header = sizeof($req->getHeader('Authorization')) > 1;
 		$token  = $header ? $req->getHeader('Authorization') : Session::get('jwtToken', true);
-		$decode = isset($token) ? Token::decode($token, $secret, ['HS256']) : null;
-		$user   = $decode ? User::find($decode->user) : null;
-		$auth   = $user ? strtotime($decode->expire) > time() : false;
+
+		$decode = isset($token)  ? Token::decode($token, $secret, ['HS256']) : null;
+		$user   = isset($decode) ? User::find($decode->user) : null;
+		$auth   = isset($user)   ? strtotime($decode->expire) > time() : false;
 		
 		$this->container->jwt = $decode;
 		
