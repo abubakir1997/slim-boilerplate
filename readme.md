@@ -40,8 +40,10 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 ~ » php -r "unlink('composer-setup.php');"
 ~ » sudo vim ~/.bash_profile
 
-	vim> export PATH="***:$HOME/.composer/vendor/bin"
+	# Note: Append this to your current path
+	vim> export PATH=":$HOME/.composer/vendor/bin"
 
+~ » mv composer.phar /usr/local/bin/composer
 ```
 
 ## Install NPM and NodeJS
