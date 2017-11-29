@@ -14,8 +14,12 @@ const extract = require('extract-text-webpack-plugin');
 
 const dir = 
 {
-	dist: path.resolve(__dirname, '../public'),
-	src : path.resolve(__dirname, 'app_modules')
+	dist   : path.resolve(__dirname, '../public'),
+	src    : path.resolve(__dirname, 'app_modules'),
+	bundled: 
+	{ 
+		styles: '../../styles/bundled' 
+	}
 };
 
 const js = 
@@ -58,7 +62,7 @@ const plugins =
 {
 	styles: 
 	{
-		filename : '../../styles/bundled/[name].min.css?[hash]',
+		filename : dir.bundled.styles + '/[name].min.css?[hash]',
 		disable  : false,
 		allChunks: true
 	},
