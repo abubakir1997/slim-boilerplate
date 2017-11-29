@@ -40,8 +40,12 @@ class Sign extends Controller
 				'user'   => $user->id,
 				'expire' => date("Y-m-d H:i:s", strtotime($store))
 			];
+			$info  	 = [
+				'username' => $user->username
+			];
 			
 			Session::set('jwtToken', Token::encode($payload, $secret), $keep);
+			Session::set('user', $info);
 			
 			$redirect = $this->router->pathFor('dashboard');
 		}
