@@ -30,7 +30,6 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 ## Install App
 ```
 ~ » git clone git://github.com/abubakir1997/slim-boilerplate.git slimapp
-~ » rm -Rf .git/
 ```
 
 ## Install Composer
