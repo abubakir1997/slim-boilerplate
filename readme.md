@@ -46,7 +46,7 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 ```
 
 ## Install NPM and NodeJS
-[Follow This Link](http://blog.teamtreehouse.com/install-node-js-npm-mac)
+[Install from Here](http://blog.teamtreehouse.com/install-node-js-npm-mac)
 
 ## Install VirtualBox
 [Install from Here](https://www.virtualbox.org/wiki/Downloads)
