@@ -55,6 +55,9 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 
 ## Setup Dependencies
 ```
+~ » cd ~/slimapp
+```
+```
 ~/slimapp » composer install
 ...
 ...
