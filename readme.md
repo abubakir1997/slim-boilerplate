@@ -27,6 +27,33 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 7. Redux
 
 ---
+## Install App
+```
+~ » git clone git@github.com:abubakir1997/slim-boilerplate.git slimapp
+~ » rm -Rf .git/
+```
+
+## Install Composer
+```
+~ » php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+~ » php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+~ » php composer-setup.php
+~ » php -r "unlink('composer-setup.php');"
+~ » sudo vim ~/.bash_profile
+
+	vim> export PATH="***:$HOME/.composer/vendor/bin"
+
+```
+
+## Install NPM and NodeJS
+[Follow This Link](http://blog.teamtreehouse.com/install-node-js-npm-mac)
+
+## Install VirtualBox
+[Install from Here](https://www.virtualbox.org/wiki/Downloads)
+
+## Install Vagrant
+[Install from Here](https://www.vagrantup.com/)
+
 ## Setup Dependencies
 ```
 ~/slimapp » composer install
