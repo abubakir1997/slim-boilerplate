@@ -14,7 +14,7 @@ export default class Counter extends React.Component
 		return (
 			<div>
 				<Segment textAlign='center' inverted>
-					<Header as='h1' inverted>Counter</Header>
+					<Header as='h1' inverted>Positive Counter</Header>
 					<div className='ui divider'></div>
 					<Header as='h1' className={Styles.header} inverted>{ this.props. state }</Header>
 					<Button onClick={ this.props.onDec} circular icon>
