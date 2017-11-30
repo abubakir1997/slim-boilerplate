@@ -9,7 +9,7 @@ import {
 
 export default class Counter extends React.Component 
 {
-	render() 
+	render()
 	{
 		return (
 			<div>
@@ -25,7 +25,7 @@ export default class Counter extends React.Component
 					</Button>
 				</Segment>
 				<Segment textAlign='center' secondary>
-				 	<p>This counter object was implemented using ReactJS and Redux</p>
+				 	<p>Components are implemented using ReactJS and Redux</p>
 				</Segment>
 			</div>
 		);

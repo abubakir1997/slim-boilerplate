@@ -15,7 +15,7 @@ store.subscribe(() => ReactDOM.render(
 	state={store.getState()}
 	onInc={() => store.dispatch({ type: 'INC' })}
 	onDec={() => store.dispatch({ type: 'DEC' })} />,
-	document.getElementById('react-app')
+	document.getElementById('react-counter')
 )); 
 
 // Init
