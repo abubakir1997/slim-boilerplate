@@ -1,6 +1,6 @@
 <?php
 
-use \Apps\Middlewares\Guest;
+use \Middlewares\Guest;
 
 $this->group('', function() {
 	$this->get(

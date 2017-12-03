@@ -17,9 +17,9 @@
         "psr-4": {
             "Libs\\": "libs/",
             "Core\\": "core/",
-            "Apps\\Controllers\\": "apps/controllers/",
-            "Apps\\Models\\": "apps/models/",
-            "Apps\\Middlewares\\": "apps/middlewares/"
+            "Controllers\\": "private/controllers/",
+            "Models\\": "private/models/",
+            "Middlewares\\": "private/middlewares/"
         }
     },
     "authors": [

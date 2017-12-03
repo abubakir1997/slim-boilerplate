@@ -5,7 +5,7 @@ namespace Libs;
 use \Core\Controller;
 use \Libs\Twig as TwigExtension;
 
-use \Apps\Middlewares\Csrf;
+use \Middlewares\Csrf;
 
 use \Monolog\Logger as MonologLogger;
 use \Monolog\Handler\StreamHandler as MonologStream;
@@ -161,13 +161,13 @@ class Container extends SlimContainer
 	 **/
 	public function controllers()
 	{
-		foreach (glob(ROOT."/apps/controllers/**/*.php") as $controller)
+		foreach (glob(ROOT."/private/controllers/**/*.php") as $controller)
 		{
 			$file  = ucfirst(substr(basename($controller), 0, -4));
 			$foldr = ucfirst(basename(dirname($controller)));
 
 			$prop  = "{$foldr}{$file}Controller";
-			$class = "\Apps\Controllers\\{$foldr}\\{$file}";
+			$class = "\Controllers\\{$foldr}\\{$file}";
 
 			$this[$prop] = function(SlimContainer $c) use($class) : Controller
 			{

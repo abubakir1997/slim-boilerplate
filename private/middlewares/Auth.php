@@ -1,11 +1,11 @@
 <?php
 
-namespace Apps\Middlewares;
+namespace Middlewares;
 
 use \Libs\Session;
 use \Libs\Config;
 use \Core\Middleware;
-use \Apps\Models\Tables\User;
+use \Models\Tables\User;
 
 use \Firebase\JWT\JWT as Token;
 use \Psr\Http\Message\RequestInterface as Request;

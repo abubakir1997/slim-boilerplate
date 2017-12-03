@@ -1,6 +1,6 @@
 <?php
 
-namespace Apps\Controllers\Site;
+namespace Controllers\Site;
 
 use \Core\Controller;
 use \Psr\Http\Message\ServerRequestInterface as Request;

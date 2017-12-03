@@ -1,9 +1,9 @@
 <?php
 
-namespace Apps\Middlewares;
+namespace Middlewares;
 
 use \Libs\Session;
-use \Apps\Models\Tables\User;
+use \Models\Tables\User;
 use \Psr\Http\Message\RequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 

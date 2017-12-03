@@ -1,6 +1,6 @@
 <?php
 
-namespace Apps\Controllers\Site;
+namespace Controllers\Site;
 
 use \Libs\Config;
 use \Libs\Helpers;
@@ -36,23 +36,19 @@ class Sign extends Controller
 			$secret  = Config::get('app.secret', '');
 			$keep    = boolval($req->getParam('keep'));
 			$store   = $keep ? '+1 years' : '+8 hours';
+			$info 	 = ['username' => $user->username];
 			$payload = [
 				'user'   => $user->id,
 				'expire' => date("Y-m-d H:i:s", strtotime($store))
 			];
-			$info  	 = [
-				'username' => $user->username
-			];
 			
 			Session::set('jwtToken', Token::encode($payload, $secret), $keep);
 			Session::set('user', $info);
-			
 			$redirect = $this->router->pathFor('dashboard');
 		}
 		else
 		{
 			$redirect = $this->router->pathFor('signin');
-			
 			$this->flash->addMessage('error','Incorrect Username or Password');
 			$res->withStatus(302);
 		}
@@ -63,7 +59,6 @@ class Sign extends Controller
 	public function destroy(Request $req, Response $res) : Response
 	{
 		Session::destory();
-
 		$redirect = $this->router->pathFor('signin');
 		return $res->withRedirect($redirect);
 	}

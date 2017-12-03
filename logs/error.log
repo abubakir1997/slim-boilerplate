@@ -127,3 +127,5 @@ Stack trace:
 #2 /var/www/html/public/index.php(16): Slim\App->run()
 #3 {main}
   thrown in /var/www/html/vendor/slim/slim/Slim/App.php on line 588
+[Sun Dec 03 06:32:42.694991 2017] [mpm_prefork:notice] [pid 2013] AH00163: Apache/2.4.7 (Ubuntu) configured -- resuming normal operations
+[Sun Dec 03 06:32:42.695377 2017] [core:notice] [pid 2013] AH00094: Command line: '/usr/sbin/apache2'

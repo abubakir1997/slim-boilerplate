@@ -42,7 +42,7 @@ abstract class Controller
 		*/
 		if (isset($this->table))
 		{
-			$table = "\Apps\Models\Tables\\$this->table";
+			$table = "\Models\Tables\\$this->table";
 
 			if (class_exists($table))
 			{

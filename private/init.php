@@ -3,7 +3,7 @@
 //Classes
 use \Libs\App;
 use \Libs\Container;
-use \Apps\Middlewares\Auth;
+use \Middlewares\Auth;
 
 //Initiate App Container
 $container = new Container();

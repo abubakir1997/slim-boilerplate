@@ -22,7 +22,7 @@ class App extends SlimApp
 	{
 		$container->groups[$folder] = $prefix;
 		$group = $this->group($prefix, function () use(&$folder, &$container) {
-			foreach (glob(ROOT."/apps/routes/$folder/*.php") as $route)
+			foreach (glob(ROOT."/private/routes/$folder/*.php") as $route)
 			{
 				require_once $route;
 			}

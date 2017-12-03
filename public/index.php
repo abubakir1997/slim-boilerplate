@@ -11,6 +11,6 @@ error_reporting(E_ALL);
 
 require_once ROOT.'/vendor/autoload.php';
 require_once ROOT.'/configs/'.APP_ENV.'.php';
-require_once ROOT.'/apps/init.php';
+require_once ROOT.'/private/init.php';
 
 $app->run();

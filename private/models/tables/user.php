@@ -1,6 +1,6 @@
 <?php
 
-namespace Apps\Models\Tables;
+namespace Models\Tables;
 
 use \Core\Model;
 use \Libs\Session;

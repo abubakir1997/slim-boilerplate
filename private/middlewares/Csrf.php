@@ -1,6 +1,6 @@
 <?php
 
-namespace Apps\Middlewares;
+namespace Middlewares;
 
 use \Slim\Csrf\Guard as SlimGuard;
 use \Slim\Flash\Messages as SlimMessages;
