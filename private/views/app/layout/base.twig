@@ -1,4 +1,5 @@
 {% extends 'layout.twig' %}
+{% import 'app/layout/item.twig' as menu %}
 {% block links %}
 <link rel="stylesheet" href="/styles/app.css">
 {% endblock %}
@@ -20,72 +21,12 @@
 {% set user = session('user') %}
 <div id="app-nav">
 	<ul id='app-menu'>
-		<li>
-			<a href="{{ path_for('dashboard') }}" 
-			   class="file-dashboard{% if path_is('dashboard') %} active{% endif %}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="dashboard large icon"></i>
-					</div>
-					<div class="label">Dashboard</div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="{#{{path_for('inventory')}}#}" 
-			   class="file-inventory{#{% if path_is('inventory') %} active{% endif %}#}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="database large icon"></i>
-					</div>
-					<div class="label">Inventory</div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="{#{{ path_for('invoice') }}#}" 
-			   class="file-invoice{#{% if path_is('invoice') %} active{% endif %}#}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="file text outline large icon"></i>
-					</div>
-					<div class="label">Invoice</div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="{#{{ path_for('orders') }}#}" 
-			   class="file-orders{#{% if path_is('orders') %} active{% endif %}#}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="shopping cart large icon"></i>
-					</div>
-					<div class="label">Ordering</div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="{#{{ path_for('shipping') }}#}" 
-			   class="file-shipping{#{% if path_is('shipping') %} active{% endif %}#}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="shipping large icon"></i>
-					</div>
-					<div class="label">Shipping</div>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="{#{{ path_for('apps') }}#}" 
-			   class="file-apps{#{% if path_is('apps') %} active{% endif %}#}">
-				<div class="ui inverted mini statistic">
-					<div class="value">
-						<i class="grid layout large icon"></i>
-					</div>
-					<div class="label">Apps</div>
-				</div>
-			</a>
-		</li>
+		{{ menu.item('dashboard', 'dashboard') }}
+		{{ menu.item('inventory', 'database') }}
+		{{ menu.item('invoice', 'file text outline') }}
+		{{ menu.item('orders', 'shopping cart') }}
+		{{ menu.item('shipping', 'shipping') }}
+		{{ menu.item('apps', 'grid layout') }}
 		<li id="app-profile">
 			<a>
 				<div class="ui inverted mini statistic">
