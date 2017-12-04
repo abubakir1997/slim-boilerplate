@@ -112,7 +112,7 @@ class Container extends SlimContainer
 		{
 			return function (Request $req, Response $res) use ($c) : Response
 			{
-				return $c->view->render($res->withStatus(404), 'error.twig', [
+				return $c->view->render($res->withStatus(404), 'site/error.twig', [
 					'code' => 404,
 					'route' => $req->getUri()
 				]);
@@ -123,7 +123,7 @@ class Container extends SlimContainer
 		{
 			return function (Request $req, Response $res) use ($c) : Response
 			{
-				return $c->view->render($res->withStatus(403), 'error.twig', [
+				return $c->view->render($res->withStatus(403), 'site/error.twig', [
 					'code' => 403,
 					'route' => $req->getUri()
 				]);
