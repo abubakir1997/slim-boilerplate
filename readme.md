@@ -4,7 +4,7 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 
 ## Application
 
-![Login Page](/readme/login.png "Login Page")
+![Signin Page](/readme/signin.png "Signin Page")
 ![Application Page](/readme/app.png "Application Page")
 
 ## Languages
