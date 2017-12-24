@@ -81,7 +81,7 @@ Quickly start with a **Slim Framework 3 / ReactJS** skeleton for LARGE applicati
 ~/slimapp » sudo vim /etc/hosts
 Password:
 
-	vim> slim.dev 	192.168.33.13
+	vim> 192.168.33.13 slim.dev
 
 ~/slimapp » vagrant ssh
 ```
