@@ -72,8 +72,8 @@ First Run Migration
 Replace DB_NAME, DB_USER, DB_PASS with your configuration.
 Note: Password is based on the current salt provided in the config folder.
 
-Username: admin
-Password: admin => md5(admin+salt)
+**Username:** admin   
+**Password:** admin => md5(admin+salt)
 ```
 ~/PROJECT_NAME » vagrant ssh
 ~/vagrant » mysql -u DB_USER -D DB_NAME -p DB_PASS -e "INSERT INTO users (username, password) VALUES ('admin', 'ec5c5011157cfe93b4994ad2b4dde12b');"
