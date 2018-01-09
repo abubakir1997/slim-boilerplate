@@ -1,0 +1,55 @@
+{% extends 'layout/bg.twig' %}
+{% set error = flash('error') %}
+{% set error_csrf = flash('csrf') %}
+{% set shake = error|length or error_csrf|length %}
+	
+{% block title %}Sign In{% endblock %}
+{% block links %}{{ parent() }}
+<link rel="stylesheet" href="/styles/animate/animate.min.css">
+{% endblock %}
+
+{% block column %}
+{% for msg in error %}
+<div class="ui inverted red segment animated pulse">{{ msg }}</div>
+{% endfor %}
+{% for msg in error_csrf %}
+<div class="ui inverted red segment animated pulse">{{ msg }}</div>
+{% endfor %}
+<div class='ui very padded segment{% if shake %} animated shake{% endif %}' id='signin-segment'>
+	<a class="ui blue large header" href="{{ path_for('home') }}">
+		<img class="ui circular image" src='/favicon.ico'>
+	</a>
+	<div class='ui divider'></div>
+	<form class='ui form' action="{{ path_for('signin.post') }}" method="post">
+		{{ csrf() }}
+		<div class="field">
+			<div class="ui fluid left icon input">
+				<input type="text" name="username" placeholder="Username">
+				<i class="user icon"></i>
+			</div>
+		</div>
+		<div class="field">
+			<div class="ui fluid left icon input">
+				<input type="password" name="password" placeholder="Password">
+				<i class="lock icon"></i>
+			</div>
+		</div>
+		<div class="field" id="signin-checkbox">
+			<div class="ui checkbox">
+				<input type="checkbox" name="keep">
+				<label>Keep me signed in</label>
+			</div>
+		</div>
+		<div class="field">
+			<button class='ui fluid blue large button'>Sign In</button>
+		</div>
+	</form>
+</div>
+<div class="ui message">Forgot Password? <a href='{# {{ path_for('signin.reset') }} #}'>Reset</a></div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/scripts/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/semantic/components/checkbox.min.js"></script>
+<script>$('#signin-checkbox > .ui.checkbox').checkbox()</script>
+{% endblock %}

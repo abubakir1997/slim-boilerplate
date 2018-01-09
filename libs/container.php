@@ -2,10 +2,9 @@
 
 namespace Libs;
 
-use \Core\Controller;
-use \Libs\Twig as TwigExtension;
-
 use \Middlewares\Csrf;
+use \Middlewares\Auth;
+use \Middlewares\Guest;
 
 use \Monolog\Logger as MonologLogger;
 use \Monolog\Handler\StreamHandler as MonologStream;
@@ -13,28 +12,18 @@ use \Monolog\Handler\FingersCrossedHandler as MonologFingersCrossed;
 
 use \Slim\Views\Twig as SlimTwig;
 use \Slim\Container as SlimContainer;
-use \Slim\Flash\Messages as SlimMessages;
+use \Slim\Flash\Messages as SlimFlash;
 use \Slim\Views\TwigExtension as SlimTwigExtension;
 use \Knlv\Slim\Views\TwigMessages as SlimTwigMessages;
+
+use \Illuminate\Database\Capsule\Manager as Capsule;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 class Container extends SlimContainer
 {
-	public $groups = [];
 	public $jwt;
-
-	/**
-	 * Application Main Groups
-	 * Gets Group Path
-	 * @return string
-	 * @author Abdelrahman Salem
-	 **/
-	public function groupPath($key)
-	{
-		return $this->groups[$key];
-	}
 
 	/**
 	 * Application Settings
@@ -42,22 +31,28 @@ class Container extends SlimContainer
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
-	public function settings()
+	function __construct()
 	{
-		$this['settings']['displayErrorDetails'] = Config::get('app.debug', false);
+		$values = [
+			'settings' => [
+				'displayErrorDetails' => Config::get('app.debug', false)
+			]
+		];
+
+		parent::__construct($values);
 	}
 
 	/**
-	 * Application View
+	 * Bind Application View
 	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
-	public function view()
+	public function bindView()
 	{
 		Session::init();
-		
-		$this['flash'] = new SlimMessages;
+
+		$this['flash'] = new SlimFlash;
 		$this['view']  = function(SlimContainer $c) : SlimTwig
 		{
 			$views = Config::get('app.views');
@@ -69,7 +64,7 @@ class Container extends SlimContainer
 			]);
 
 			//Add Extensions
-			$view->addExtension(new TwigExtension($c->router, $c->request->getUri()));
+			$view->addExtension(new Twig($c->router, $c->request->getUri()));
 			$view->addExtension(new SlimTwigMessages($c->flash));
 			
 			$view->getEnvironment()->addGlobal('csrf', [
@@ -84,14 +79,14 @@ class Container extends SlimContainer
 	}
 
 	/**
-	 * Application Authentications
+	 * Bind Application Authentications
 	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
-	public function authentication()
+	public function bindCsrf()
 	{
-		$this['csrf']  = function(SlimContainer $c) : Csrf
+		$this['csrf'] = function(SlimContainer $c) : Csrf
 		{
 			$guard = new Csrf;
 			$guard->setFlash($c->flash);
@@ -101,43 +96,40 @@ class Container extends SlimContainer
 	}
 
 	/**
-	 * Error Handler
-	 * Modifies Error Handler
+	 * Bind Application Auth
+	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
-	public function errors()
+	public function bindAuth()
 	{
-		$this['notFoundHandler'] = function (SlimContainer $c)
+		$this['auth'] = function(SlimContainer $c) : Auth
 		{
-			return function (Request $req, Response $res) use ($c) : Response
-			{
-				return $c->view->render($res->withStatus(404), 'site/error.twig', [
-					'code' => 404,
-					'route' => $req->getUri()
-				]);
-			};
-		};
-
-		$this['notAllowedHandler'] = function (SlimContainer $c)
-		{
-			return function (Request $req, Response $res) use ($c) : Response
-			{
-				return $c->view->render($res->withStatus(403), 'site/error.twig', [
-					'code' => 403,
-					'route' => $req->getUri()
-				]);
-			};
+			return new Auth($c);
 		};
 	}
 
 	/**
-	 * Application Logger
+	 * Bind Application Auth
+	 * Modifies Twig Class
+	 * @return void
+	 * @author Abdelrahman Salem
+	 **/
+	public function bindGuest()
+	{
+		$this['guest'] = function(SlimContainer $c) : Guest
+		{
+			return new Guest($c);
+		};
+	}
+
+	/**
+	 * Bind Application Logger
 	 * Modifies Monolog Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
-	public function logger()
+	public function bindLogger()
 	{
 		$this['logger'] = function(SlimContainer $c) : MonologLogger
 		{
@@ -154,25 +146,37 @@ class Container extends SlimContainer
 	}
 
 	/**
-	 * undocumented function
-	 *
+	 * Bind Eloquent ORM
+	 * A PDO ORM
 	 * @return void
-	 * @author 
+	 * @author Abdelrahman Salem 
 	 **/
-	public function controllers()
+	function bindEloquent($driver = 'default')
 	{
-		foreach (glob(ROOT."/private/controllers/**/*.php") as $controller)
-		{
-			$file  = ucfirst(substr(basename($controller), 0, -4));
-			$foldr = ucfirst(basename(dirname($controller)));
+		$capsule = new Capsule;
+		
+		$capsule->addConnection([
+		    'driver'    => Config::get("$driver.driver", 'mysql'),
+		    'host'      => Config::get("$driver.host", '127.0.0.1'),
+		    'database'  => Config::get("$driver.database"),
+		    'username'  => Config::get("$driver.username", ''),
+		    'password'  => Config::get("$driver.password", ''),
+		    'charset'   => Config::get("$driver.charset", 'utf8'),
+		    'collation' => Config::get("$driver.collation", 'utf8_unicode_ci'),
+		    'prefix'    => Config::get("$driver.prefix", ''),
+		]);
 
-			$prop  = "{$foldr}{$file}Controller";
-			$class = "\Controllers\\{$foldr}\\{$file}";
+		$capsule->bootEloquent();
+	}
 
-			$this[$prop] = function(SlimContainer $c) use($class) : Controller
-			{
-				return new $class($c->view, $c->router, $c->flash, $c->logger);
-			};
-		}
+	/**
+	 * Error Handler
+	 * Modifies Error Handler
+	 * @return void
+	 * @author Abdelrahman Salem
+	 **/
+	public function routeErrors()
+	{
+		// Code here...
 	}
 }

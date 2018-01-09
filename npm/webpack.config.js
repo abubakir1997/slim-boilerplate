@@ -1,31 +1,42 @@
 // ------------------------------------------------------
+// ********************* Enviroment *********************
+// ------------------------------------------------------
+
+const isProduction  = process.env.NODE_ENV == 'production'
+const isDevelopment = process.env.NODE_ENV == 'development' 
+
+const env = JSON.stringify(process.env.NODE_ENV)
+
+// ------------------------------------------------------
 // ********************* Modules ************************
 // ------------------------------------------------------
 
-const path 	  = require('path');
-const glob 	  = require("glob");
+const path    = require('path');
+const glob    = require("glob");
 const webpack = require('webpack');
 const extract = require('extract-text-webpack-plugin');
+const purify  = require('purifycss-webpack');
 
 
 // ------------------------------------------------------
 // ********************* Paths **************************
 // ------------------------------------------------------
 
-const dir = 
+const dir =
 {
 	dist   : path.resolve(__dirname, '../public'),
-	src    : path.resolve(__dirname, 'app_modules'),
-	bundled: 
-	{ 
-		styles: '../../styles/bundled' 
+	src    : path.resolve(__dirname, 'app'),
+	modules: path.resolve(__dirname, 'app_modules'),
+	bundled:
+	{
+		styles: '../../styles/bundled'
 	}
 };
 
-const js = 
+const js =
 {
 	dist: path.resolve(dir.dist, 'scripts/bundled'),
-	src : path.resolve(dir.src , 'build/*.jsx')
+	src : path.resolve(dir.src , '*.jsx')
 };
 
 
@@ -44,31 +55,40 @@ const entry = glob.sync(js.src)
 // ------------------------------------------------------
 // ********************* Options ************************
 // ------------------------------------------------------
-const options = 
+const options =
 {
-	style: 
+	style:
 	{
 		minimize      : true,
 		modules       : true,
-		localIdentName: '[hash:base64:5]_[name]_[local]'
+		localIdentName: isProduction ? '[hash:base64]' : '[name]__[local]--[hash:base64:5]'
 	}
 };
-
 
 // ------------------------------------------------------
 // ********************* Plugins ************************
 // ------------------------------------------------------
-const plugins = 
+const plugins =
 {
-	styles: 
+	styles:
 	{
 		filename : dir.bundled.styles + '/[name].min.css?[hash]',
 		disable  : false,
 		allChunks: true
 	},
-	scripts: 
+	purify:
 	{
-		compress: 
+		minimize: true,
+		paths: glob.sync(path.join(js.dist, '*'), { nodir: true }),
+		purifyOptions:
+		{
+			info: true,
+			minify: true
+		}
+	},
+	scripts:
+	{
+		compress:
 		{
 			warnings    : false,
 			screw_ie8   : true,
@@ -81,26 +101,27 @@ const plugins =
 			if_return   : true,
 			join_vars   : true
 		},
-		output: 
+		output:
 		{
 			comments: false
 		}
 	},
 	config:
 	{
-		'process.env': {
-			'NODE_ENV': JSON.stringify('development')
+		'process.env':
+		{
+			'NODE_ENV': env
 		}
 	}
 };
 
 
 // ------------------------------------------------------
-// ********************* Extensions *********************
+// ********************* Loaders ************************
 // ------------------------------------------------------
-const extensions = 
+const loaders =
 {
-	styles: 
+	styles:
 	{
 		fallback  : "style-loader",
 		publicPath: dir.src,
@@ -113,7 +134,7 @@ const extensions =
 			'cssimportant-loader'
 		]
 	},
-	sass: 
+	sass:
 	{
 		fallback  : "style-loader",
 		publicPath: dir.src,
@@ -135,15 +156,15 @@ const extensions =
 module.exports = {
 	entry,
 	devtool: 'source-map',
-	output : 
+	output :
 	{
 		path         : js.dist,
 		filename     : '[name].min.js?[hash]',
 		chunkFilename: '[id].min.js?[hash]'
 	},
-	module: 
+	module:
 	{
-		loaders: 
+		loaders:
 		[
 			{
 				test   : /\.jsx?$/,
@@ -153,24 +174,25 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use : extract.extract(extensions.styles)
+				use : extract.extract(loaders.styles)
 			},
 			{
 				test: /\.sass$/,
-				use : extract.extract(extensions.sass)
+				use : extract.extract(loaders.sass)
 			}
 		]
 	},
-	resolve: 
+	resolve:
 	{
-		modules   : ['node_modules', dir.src],
+		modules   : [dir.modules, 'node_modules'],
 		extensions: ['.jsx', '.js', '.css']
 	},
-	plugins: 
+	plugins:
 	[
-		new extract(plugins.styles),
 		new webpack.optimize.UglifyJsPlugin(plugins.scripts),
 		new webpack.HashedModuleIdsPlugin(),
-		new webpack.DefinePlugin(plugins.config)
+		new webpack.DefinePlugin(plugins.config),
+		new extract(plugins.styles),
+		//new purify(plugins.purify)
 	]
 };

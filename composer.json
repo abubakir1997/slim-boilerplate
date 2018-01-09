@@ -1,6 +1,6 @@
 {
-    "name": "abubakir1997/slim",
-    "description": "Base Slim 3 MVC Architecture",
+    "name": "slim-react-boilerplate",
+    "description": "Slim React Boilerplate",
     "type": "project",
     "require": {
         "slim/slim": "^3.9",
@@ -17,9 +17,9 @@
         "psr-4": {
             "Libs\\": "libs/",
             "Core\\": "core/",
-            "Controllers\\": "private/controllers/",
-            "Models\\": "private/models/",
-            "Middlewares\\": "private/middlewares/"
+            "Controllers\\": "app/Controllers/",
+            "Models\\": "app/Models/",
+            "Middlewares\\": "app/Middlewares/"
         }
     },
     "authors": [
@@ -29,11 +29,8 @@
         }
     ],
     "scripts": {
-        "build": "cd npm && npm run build",
-        "dev": "cd npm && npm run dev",
-        "clean": "cd npm && npm run clean",
-        
-        "migrate": "vendor/bin/phinx migrate -t $1",
-        "rollback": "vendor/bin/phinx rollback -t $1"
+        "npm-build": "cd npm; npm run build; cd ../;",
+        "npm-dev"  : "cd npm; npm run dev; cd ../;",
+        "npm-clean": "cd npm; npm run clean; cd ../;"
     }
 }

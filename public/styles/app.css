@@ -3,7 +3,7 @@
 html,
 body 
 {
-    padding:0;
+    padding: 0;
     margin : 0;
     height : 100%;
 }
@@ -13,9 +13,10 @@ body
     background: #E0E0E0;
 }
 
+
 /* App Nav */
 
-#app-nav 
+#app-nav
 {
     background         : linear-gradient( rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("/images/header.jpeg");
     background-position: center bottom;
@@ -24,6 +25,11 @@ body
     padding-bottom     : 4em;
     box-shadow         : 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     text-align         : center;
+}
+
+#app-nav-mobile
+{
+    display: none;
 }
 
 /* App Menu */
@@ -77,6 +83,13 @@ body
 {
     position: absolute !important;
     bottom: 0;
+    margin-left: 2px;
+}
+
+#app-profile,
+#app-profile a
+{
+    height: 102.5px !important;
 }
 
 #app-profile .image.white  
@@ -91,6 +104,7 @@ body
     width             : 90%;
     min-height        : calc(100% - 150px);
     overflow-y        : scroll;
+    overflow-x        : hidden;
     background        : #fff;
     margin            : 10px auto;
     margin-top        : -3em;
@@ -124,8 +138,17 @@ body
 
     #app-nav 
     {
+        /*display: none;*/
         background-position: center top;
     }
+
+    /*#app-nav-mobile
+    {
+        display: block;
+        background: black;
+        width: calc(100% - 10px);
+        height: 75px;
+    }*/
 }
 
 @media print 

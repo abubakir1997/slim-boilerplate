@@ -1,0 +1,34 @@
+{% extends 'layout/base.twig' %}
+{% import 'macro/menu.twig' as menu %}
+{% set imp = 'initial/' ~ app ~ '.twig' %}
+
+{% block title %}{{ app|capitalize }}{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="/styles/app.css">
+<link rel="stylesheet" href="/styles/bundled/{{ app }}.min.css">
+{% endblock %}
+
+{% block body %}
+<div id='app-nav-mobile'></div>
+<div id="app-nav">
+	<ul id='app-menu'>
+		{{ menu.item('dashboard', 'dashboard') }}
+		<li id="app-profile">{% include 'initial/profile.twig' %}</li>
+	</ul>
+</div>
+<div id="app-content">
+	<div class="ui container" id='app-root'>{% include imp %}</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+	localStorage.setItem('base',  		'{{ base_url() }}{{ api|default("/app") }}');
+	localStorage.setItem('jwtToken', 	'{{session("jwtToken", true)}}');
+	localStorage.setItem('csrfToken', 	'{{ csrf.value }}');
+	localStorage.setItem('csrfKey', 	'{{ csrf.name }}');
+</script>
+<script type="text/javascript" src="/scripts/jquery/jquery.min.js" defer></script>
+<script type="application/javascript" src="/scripts/bundled/app.min.js" defer></script>
+<script type="application/javascript" src="/scripts/bundled/{{ app }}.min.js" defer></script>
+{% endblock %}

@@ -6,10 +6,12 @@ use \Slim\Container as SlimContainer;
 
 class Middleware
 {
-	protected $container;
+	protected $router;
+	protected $jwt;
 
 	public function __construct(SlimContainer $c = null)
 	{
-		$this->container = $c;
+		$this->jwt = $c->jwt;
+		$this->router = $c->router;
 	}
 }
