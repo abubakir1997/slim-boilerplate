@@ -27,7 +27,10 @@ const AppProfile =
 	</a>
 )
 
-const row = { marginBottom: 5 }
+const row = { 
+	marginBottom: 5 
+}
+
 const App =
 (
 	<Popup trigger={ AppProfile } position="bottom center" on='click'>
