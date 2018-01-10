@@ -34,9 +34,9 @@
 
 ## Before Starting
 
-The following instructions contain variable placeholders that you could configure to your liking.
-Through out the instructions replace any ```PROJECT_*``` variable to your liking.
-To make things easier, I marked headers in the instructions with a **###** for sections that contain placeholders.
+The following instructions contain variable placeholders that you could configure to your liking.   
+Through out the instructions replace any ```PROJECT_*``` variable to your liking.   
+To make things easier, I marked headers in the instructions with a **###** for sections that contain placeholders.   
 Ex. ```PROJECT_NAME``` => ```todo_app```
 
 ## Cloning Boilerplate ###
@@ -75,7 +75,6 @@ Ex. ```PROJECT_NAME``` => ```todo_app```
 
 ## Setup User
 
-First Run Migration
 ```
 ~/PROJECT_NAME » sudo echo 'alias phinx=vendor/bin/phinx' >> ~/.bash_profile 
 ~/PROJECT_NAME » phinx migrate
@@ -86,7 +85,7 @@ First Run Migration
 **Username:** admin   
 **Password:** admin
 
-The following hash will generate the **admin** password => ```md5(admin+salt)```
+The following hash will generate the **admin** password => ```md5(admin+salt)```   
 To insert the admin/admin login crediential based on the provided salt in default configuration do the following:
 ```
 ~/PROJECT_NAME » vagrant ssh
