@@ -19,13 +19,30 @@ class SignController extends Controller
 		return $this->view->render($res, 'web/signin.twig');
 	}
 
+	/**
+	 * Login Attempt
+	 * @param Usersname
+	 * @param Password
+	 * @param Keep Login
+	 * @return \Psr\Http\Message\ResponseInterface
+	 * @author Abdelrahman Salem
+	 **/
 	public function post(Request $req, Response $res) : Response
 	{
+		/*
+		 * Get User Using Input Data
+		 * Usersname
+		 * Hashed Password
+		 */
 		$user = User::where([
 			['username', $req->getParam('username')],
 			['password', Helpers::hash($req->getParam('password'))]
 		])->first();
 
+		/*
+		 * If User Exists: Store New JWT Token
+		 * Else: Return Error Flash Message
+		 */
 		if ($user)
 		{
 			$secret  = Config::get('app.secret', '');
@@ -36,7 +53,7 @@ class SignController extends Controller
 				'user'   => $user->id,
 				'expire' => date("Y-m-d H:i:s", strtotime($store))
 			];
-			
+
 			Session::set('jwtToken', Token::encode($payload, $secret), $keep);
 			Session::set('user', $info);
 			$redirect = $this->router->pathFor('dashboard');
@@ -51,6 +68,12 @@ class SignController extends Controller
 		return $res->withRedirect($redirect);
 	}
 
+	/**
+	 * Destroy Login Session
+	 * 
+	 * @return \Psr\Http\Message\ResponseInterface
+	 * @author Abdelrahman Salem
+	 **/
 	public function destroy(Request $req, Response $res) : Response
 	{
 		Session::destory();

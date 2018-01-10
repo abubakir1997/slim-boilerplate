@@ -31,29 +31,43 @@
 [Install Vagrant](https://www.vagrantup.com/)  
 
 ---
-## Cloning Boilerplate
 
-Replace PROJECT_NAME with your desired project name.
+## Before Starting
+
+The following instructions contain variable placeholders that you could configure to your liking.
+Through out the instructions replace any ```PROJECT_*``` variable to your liking.
+To make things easier, I marked headers in the instructions with a **###** for sections that contain placeholders.
+Ex. ```PROJECT_NAME``` => ```todo_app```
+
+## Cloning Boilerplate ###
+
 ```
 ~ » git clone git://github.com/abubakir1997/slim-boilerplate.git PROJECT_NAME
-```
-
-## Setup Dependencies
-```
 ~ » cd ~/PROJECT_NAME
 ```
+
+### Configure Files
+```~/PROJECT_NAME/config/dev.php```   
+```~/PROJECT_NAME/config/prod.php```   
+```~/PROJECT_NAME/phinx.yml```   
+```~/PROJECT_NAME/Vagrant.sh```    
+```~/PROJECT_NAME/Vagrantfile```     
+
+## Setup Composer
 ```
 ~/PROJECT_NAME » composer install
 ~/PROJECT_NAME » composer dump-autoload --optimize
-~/PROJECT_NAME » cd npm/
-~/PROJECT_NAME » npm install
 ```
 
-## Setup Vagrant
+## Setup NPM
+```
+~/PROJECT_NAME » cd npm/
+~/PROJECT_NAME » npm install
+~/PROJECT_NAME » npm run build
+```
 
-First go into ```~/PROJECT_NAME/Vagrant.sh``` and configure your box in the configuration section on the top.
+## Setup Vagrant ###
 
-Replace PROJECT_DOMAIN with desired domain for development purposes.
 ```
 ~/PROJECT_NAME » vagrant up --provision
 ~/PROJECT_NAME » sudo echo '192.168.33.10 PROJECT_DOMAIN.test' >> /etc/hosts
@@ -67,13 +81,13 @@ First Run Migration
 ~/PROJECT_NAME » phinx migrate
 ```
 
-## Adding Admin User for Login
-
-Replace DB_NAME, DB_USER, DB_PASS with your configuration.
-Note: Password is based on the current salt provided in the config folder.
+## Example Credentials ###
 
 **Username:** admin   
-**Password:** admin => md5(admin+salt)
+**Password:** admin
+
+The following hash will generate the **admin** password => ```md5(admin+salt)```
+To insert the admin/admin login crediential based on the provided salt in default configuration do the following:
 ```
 ~/PROJECT_NAME » vagrant ssh
 ~/vagrant » mysql -u DB_USER -D DB_NAME -p DB_PASS -e "INSERT INTO users (username, password) VALUES ('admin', 'ec5c5011157cfe93b4994ad2b4dde12b');"
