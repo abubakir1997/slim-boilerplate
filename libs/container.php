@@ -52,20 +52,17 @@ class Container extends SlimContainer
 	 **/
 	public function bindView()
 	{
-		Session::init();
-
-		$this['flash'] = new SlimFlash;
-		$this['view']  = function(SlimContainer $c) : SlimTwig
+		$this['view'] = function(SlimContainer $c) : SlimTwig
 		{
 			$views = Config::get('app.views');
 			$cache = Config::get('app.cache', false);
 
-			//Initiate View Method
-			$view  = new SlimTwig(ROOT.$views, [
+			// Initiate View Method
+			$view = new SlimTwig(ROOT.$views, [
 				'cache' => $cache == false ? $cache : ROOT.$cache
 			]);
 
-			//Add Extensions
+			// Add Extensions
 			$view->addExtension(new Twig($c->router, $c->request->getUri()));
 			$view->addExtension(new SlimTwigMessages($c->flash));
 			
@@ -81,8 +78,20 @@ class Container extends SlimContainer
 	}
 
 	/**
+	 * Bind Flash Messages
+	 * Returns Flash Message to Twig
+	 * @return void
+	 * @author Abdelrahman Salem
+	 **/
+	public function bindFlash()
+	{
+		Session::init();
+
+		$this['flash'] = new SlimFlash;
+	}
+
+	/**
 	 * Bind Application Authentications
-	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
@@ -99,7 +108,6 @@ class Container extends SlimContainer
 
 	/**
 	 * Bind Application Auth
-	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
@@ -113,7 +121,6 @@ class Container extends SlimContainer
 
 	/**
 	 * Bind Application Auth
-	 * Modifies Twig Class
 	 * @return void
 	 * @author Abdelrahman Salem
 	 **/
@@ -172,12 +179,11 @@ class Container extends SlimContainer
 	}
 
 	/**
-	 * Error Handler
-	 * Modifies Error Handler
-	 * @return void
+	 * Bind Error Handlers
+	 * @return ErrorController:method
 	 * @author Abdelrahman Salem
 	 **/
-	public function routeErrors()
+	public function bindErrorHandlers()
 	{
 		$error = new ErrorController($this);
 

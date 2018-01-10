@@ -26,13 +26,13 @@ $container = new Container();
 */
 
 $container->bindLogger();
-$container->bindView();
-$container->bindCsrf();
 $container->bindAuth();
 $container->bindGuest();
+$container->bindCsrf();
+$container->bindFlash();
+$container->bindView();
 $container->bindEloquent();
-
-$container->routeErrors();
+$container->bindErrorHandlers();
 
 /*
 |--------------------------------------------------------------------------
