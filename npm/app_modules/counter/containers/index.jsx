@@ -38,8 +38,8 @@ class Counter extends React.Component
 				<Header size='huge'>Basic Redux Counter</Header>
 				<Component value={ value } />
 				<Segment basic>
-					<Button onClick={ incAction }>INCREMENT</Button>
 					<Button onClick={ decAction }>DECREMENT</Button>
+					<Button onClick={ incAction }>INCREMENT</Button>
 				</Segment>
 			</Segment>
 		)
