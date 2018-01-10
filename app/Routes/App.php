@@ -16,10 +16,6 @@ $this->get(
 	'Controllers\App\DashboardController:get'
 )->setName('app.default');
 
-/*
- * Dashboard
- */
-
 $this->get(
 	'/dashboard',
 	'Controllers\App\DashboardController:get'

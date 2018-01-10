@@ -6,6 +6,8 @@ use \Middlewares\Csrf;
 use \Middlewares\Auth;
 use \Middlewares\Guest;
 
+use \Controllers\Web\ErrorController;
+
 use \Monolog\Logger as MonologLogger;
 use \Monolog\Handler\StreamHandler as MonologStream;
 use \Monolog\Handler\FingersCrossedHandler as MonologFingersCrossed;
@@ -177,6 +179,38 @@ class Container extends SlimContainer
 	 **/
 	public function routeErrors()
 	{
-		// Code here...
+		$error = new ErrorController($this);
+
+		$this['notFoundHandler'] = function () use ($error)
+		{
+		    return function($req, $res) use ($error)
+		    {
+		    	return $error->notFound($req, $res);
+		    };
+		};
+
+		$this['notAllowedHandler'] = function () use ($error)
+		{
+		    return function($req, $res) use ($error)
+		    {
+		    	return $error->notAllowed($req, $res);
+		    };
+		};
+
+		$this['phpErrorHandler'] = function () use ($error)
+		{
+		    return function($req, $res) use ($error)
+		    {
+		    	return $error->phpError($req, $res);
+		    };
+		};
+
+		$this['errorHandler'] = function () use ($error)
+		{
+		    return function($req, $res) use ($error)
+		    {
+		    	return $error->errorHandler($req, $res);
+		    };
+		};
 	}
 }

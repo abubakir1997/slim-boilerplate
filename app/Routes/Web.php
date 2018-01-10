@@ -11,21 +11,6 @@
 |
 */
 
-
-/*
- * Error Page
- */
-
- $this->get(
-	'/404',
-	'Controllers\Web\ErrorController:notFound'
-)->setName('notFound');
-
-  $this->get(
-	'/403',
-	'Controllers\Web\ErrorController:notAllowed'
-)->setName('notAllowed');
-
 $this->get(
 	'/',
 	'Controllers\Web\HomeController:get'
@@ -37,7 +22,7 @@ $this->get(
 );
 
 /*
- * Signin
+ * Signin Routes
  */
 
 $this->post(
