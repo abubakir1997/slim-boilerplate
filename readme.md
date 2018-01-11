@@ -86,7 +86,7 @@ Ex. ```PROJECT_NAME``` => ```todo_app```
 **Password:** admin
 
 The following hash will generate the **admin** password => ```md5(admin+salt)```   
-To insert the admin/admin login crediential based on the provided salt in default configuration do the following:
+To insert the admin/admin login crediential based on the provided salt in the default configuration do the following:
 ```
 ~/PROJECT_NAME » vagrant ssh
 ~/vagrant » mysql -u DB_USER -D DB_NAME -p DB_PASS -e "INSERT INTO users (username, password) VALUES ('admin', 'ec5c5011157cfe93b4994ad2b4dde12b');"
