@@ -26,7 +26,7 @@
 
 ## Required Software
 [Install Composer](https://getcomposer.org/download/)  
-[Install NPM and NodeJS](http://blog.teamtreehouse.com/install-node-js-npm-mac)  
+[Install NPM and NodeJS](https://nodejs.org/en/)  
 [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
 [Install Vagrant](https://www.vagrantup.com/)  
 
