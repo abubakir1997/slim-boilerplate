@@ -23,7 +23,6 @@ Config::set('slim_errors', true);
 */
 
 Config::set('app.debug', true);
-Config::set('app.cache', '/cache/views');
 Config::set('app.views', '/resources/views');
 Config::set('app.logger','/logs/app.log');
 Config::set('app.errors','/logs/error.log');
