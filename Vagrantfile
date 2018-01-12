@@ -7,6 +7,7 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
+  config.vm.synced_folder "./", "/home/vagrant/slim", :owner => "www-data", :group => "www-data", :mount_options => ["dmode=775", "fmode=664"]
   config.vm.define 'slim' do |slim|
     slim.vm.box = 'ubuntu/trusty64'
     slim.vm.hostname = 'slim'

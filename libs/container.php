@@ -15,7 +15,6 @@ use \Monolog\Handler\FingersCrossedHandler as MonologFingersCrossed;
 use \Slim\Views\Twig as SlimTwig;
 use \Slim\Container as SlimContainer;
 use \Slim\Flash\Messages as SlimFlash;
-use \Slim\Views\TwigExtension as SlimTwigExtension;
 use \Knlv\Slim\Views\TwigMessages as SlimTwigMessages;
 
 use \Illuminate\Database\Capsule\Manager as Capsule;
@@ -63,7 +62,7 @@ class Container extends SlimContainer
 			]);
 
 			// Add Extensions
-			$view->addExtension(new Twig($c->router, $c->request->getUri()));
+			$view->addExtension(new Twig_Extension($c->router, $c->request->getUri()));
 			$view->addExtension(new SlimTwigMessages($c->flash));
 			
 			$view->getEnvironment()->addGlobal('csrf', [
@@ -185,38 +184,41 @@ class Container extends SlimContainer
 	 **/
 	public function bindErrorHandlers()
 	{
-		$error = new ErrorController($this);
-
-		$this['notFoundHandler'] = function () use ($error)
+		if (!Config::get('slim_errors', false))
 		{
-		    return function($req, $res) use ($error)
-		    {
-		    	return $error->notFound($req, $res);
-		    };
-		};
+			$error = new ErrorController($this);
 
-		$this['notAllowedHandler'] = function () use ($error)
-		{
-		    return function($req, $res) use ($error)
-		    {
-		    	return $error->notAllowed($req, $res);
-		    };
-		};
+			$this['notFoundHandler'] = function () use ($error)
+			{
+			    return function($req, $res) use ($error)
+			    {
+			    	return $error->notFound($req, $res);
+			    };
+			};
 
-		$this['phpErrorHandler'] = function () use ($error)
-		{
-		    return function($req, $res) use ($error)
-		    {
-		    	return $error->phpError($req, $res);
-		    };
-		};
+			$this['notAllowedHandler'] = function () use ($error)
+			{
+			    return function($req, $res) use ($error)
+			    {
+			    	return $error->notAllowed($req, $res);
+			    };
+			};
 
-		$this['errorHandler'] = function () use ($error)
-		{
-		    return function($req, $res) use ($error)
-		    {
-		    	return $error->errorHandler($req, $res);
-		    };
-		};
+			$this['phpErrorHandler'] = function () use ($error)
+			{
+			    return function($req, $res) use ($error)
+			    {
+			    	return $error->phpError($req, $res);
+			    };
+			};
+
+			$this['errorHandler'] = function () use ($error)
+			{
+			    return function($req, $res) use ($error)
+			    {
+			    	return $error->errorHandler($req, $res);
+			    };
+			};
+		}
 	}
 }

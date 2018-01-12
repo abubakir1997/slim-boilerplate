@@ -2,14 +2,14 @@
 
 namespace Core;
 
-use \Slim\Container as SlimContainer;
+use \Slim\Container;
 
 class Middleware
 {
 	protected $router;
 	protected $jwt;
 
-	public function __construct(SlimContainer $c = null)
+	public function __construct(Container $c = null)
 	{
 		$this->jwt = $c->jwt;
 		$this->router = $c->router;

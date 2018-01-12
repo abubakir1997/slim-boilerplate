@@ -2,16 +2,16 @@
 
 namespace Middlewares;
 
-use \Slim\Csrf\Guard as SlimGuard;
-use \Slim\Flash\Messages as SlimFlash;
+use \Slim\Csrf\Guard;
+use \Slim\Flash\Messages as Flash;
 use \Psr\Http\Message\RequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-class Csrf extends SlimGuard
+class Csrf extends Guard
 {
     private $flash;
     
-    public function setFlash(SlimFlash $flash)
+    public function setFlash(Flash $flash)
     {
         $this->flash = $flash;
     }

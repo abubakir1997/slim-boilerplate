@@ -5,7 +5,7 @@ namespace Libs;
 /**
 * Extend Twig Functionality and Filters
 */
-class Twig extends \Twig_Extension
+class Twig_Extension extends \Twig_Extension
 {
 	 /**
      * @var \Slim\Interfaces\RouterInterface

@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use \Slim\Container as SlimContainer;
+use \Slim\Container;
 
 abstract class Controller
 {
@@ -11,7 +11,7 @@ abstract class Controller
 	protected $flash;
 	protected $logger;
 	
-	function __construct(SlimContainer $c)
+	function __construct(Container $c)
 	{
 		$this->view   = $c->view;
 		$this->router = $c->router;
