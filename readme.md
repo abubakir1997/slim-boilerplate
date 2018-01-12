@@ -25,7 +25,7 @@
 6. Semantic UI React
 
 ## Required Software
-[Install Composer](https://getcomposer.org/download/)  	
+[Install Composer](https://getcomposer.org/download/)  
 [Install NPM and NodeJS](http://blog.teamtreehouse.com/install-node-js-npm-mac)  
 [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
 [Install Vagrant](https://www.vagrantup.com/)  
