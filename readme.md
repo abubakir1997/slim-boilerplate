@@ -30,6 +30,11 @@
 [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
 [Install Vagrant](https://www.vagrantup.com/)  
 
+```
+~ » vim ~/.bash_profile
+~ » export PATH="$PATH:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin"
+```
+
 ---
 
 ## Before Starting
