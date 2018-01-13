@@ -26,13 +26,12 @@
 
 ## Install Virtual Box
 
-[Install VirtualBox](https://www.virtualbox.org/wiki/Downloads). If during installation  
-a failed installation appears such as this one.
+[Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
+If during installation a failed installation appears such as this one:
 
 ![Failed Installation](/readme/failed.png "Failed Installation")
 
-Navigate to the `System Preferences > Security & Privacy` then click the Allow Button  
-as shown in the image below.
+Navigate to the `System Preferences > Security & Privacy` then click the Allow Button as shown in the image below.
 
 ![Fix Installation](/readme/fix.jpg "Fix Installation")
 
@@ -57,14 +56,14 @@ as shown in the image below.
 
 ---
 
-## Before Starting
+## Before Continuing
 
 The following instructions contain variable placeholders that you could configure to your liking.   
 Through out the instructions replace any ```PROJECT_*``` variable to your liking.   
-To make things easier, I marked headers in the instructions with a **###** for sections that contain placeholders.   
+To make things easier, I marked headers in the instructions with a **@var** for sections that contain placeholders.   
 Ex. ```PROJECT_NAME``` => ```todo_app```
 
-## Cloning Boilerplate ###
+## Cloning Boilerplate @var
 
 ```
 ~ » git clone git://github.com/abubakir1997/slim-boilerplate.git PROJECT_NAME
@@ -91,7 +90,7 @@ Ex. ```PROJECT_NAME``` => ```todo_app```
 ~/PROJECT_NAME » npm run build
 ```
 
-## Setup Vagrant ###
+## Setup Vagrant @var
 
 ```
 ~/PROJECT_NAME » vagrant up --provision
@@ -101,13 +100,12 @@ The following error may appear due to improper VirtualBox Installation:
 
 ![Error](/readme/error.jpg "Error")
 
-In this case go remove **Virtual Box** and reinstall it following the above instructions.
+In such case remove **Virtual Box** and reinstall it following the above instructions.
 
 ## Setup Domain
 
 When in vim mode navigate to the bottom of the page (i.e. to the last letter) via the arrow keys.  
-Then click the letter **i** after it click the key **enter | return** and insert the line  
-after **vim>**.
+Then click the letter **i** after it click the key **enter | return** and insert the line after **vim>**.
 ```
 ~/PROJECT_NAME » sudo vim /etc/hosts 
 
@@ -121,7 +119,7 @@ after **vim>**.
 ~/PROJECT_NAME » phinx migrate
 ```
 
-## Example Credentials ###
+## Example Credentials @var
 
 **Username:** admin   
 **Password:** admin
