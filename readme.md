@@ -24,15 +24,35 @@
 7. Redux
 6. Semantic UI React
 
+## Install Virtual Box
+
+[Install VirtualBox](https://www.virtualbox.org/wiki/Downloads). If during installation  
+a failed installation appears such as this one.
+
+![Failed Installation](/readme/failed.png "Failed Installation")
+
+Navigate to the `System Preferences > Security & Privacy` then click the Allow Button  
+as shown in the image below.
+
+![Fix Installation](/readme/fix.jpg "Fix Installation")
+
 ## Required Software
-[Install Composer](https://getcomposer.org/download/)  
 [Install NPM and NodeJS](https://nodejs.org/en/)  
-[Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
 [Install Vagrant](https://www.vagrantup.com/)  
 
+
+## Install Composer
 ```
-~ » vim ~/.bash_profile
-~ » export PATH="$PATH:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin"
+~ » php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+~ » php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+~ » php composer-setup.php
+~ » php -r "unlink('composer-setup.php');"
+...
+...
+...
+~ » mv ./composer.phar /usr/local/bin
+~ » echo "export PATH="$PATH:/usr/local/bin"" >> ~/.bash_profile
+~ » echo "alias composer=composer.phar" >> ~/.bash_profile
 ```
 
 ---
@@ -75,7 +95,23 @@ Ex. ```PROJECT_NAME``` => ```todo_app```
 
 ```
 ~/PROJECT_NAME » vagrant up --provision
-~/PROJECT_NAME » sudo echo '192.168.33.10 PROJECT_DOMAIN.test' >> /etc/hosts
+```
+
+The following error may appear due to improper VirtualBox Installation:  
+
+![Error](/readme/error.jpg "Error")
+
+In this case go remove **Virtual Box** and reinstall it following the above instructions.
+
+## Setup Domain
+
+When in vim mode navigate to the bottom of the page (i.e. to the last letter) via the arrow keys.  
+Then click the letter **i** after it click the key **enter | return** and insert the line  
+after **vim>**.
+```
+~/PROJECT_NAME » sudo vim /etc/hosts 
+
+	vim> 192.168.33.10 PROJECT_DOMAIN.test
 ```
 
 ## Setup User
@@ -91,8 +127,8 @@ Ex. ```PROJECT_NAME``` => ```todo_app```
 **Password:** admin
 
 The following hash will generate the **admin** password => ```md5(admin+salt)```   
-To insert the admin/admin login crediential based on the provided salt in the default configuration do the following:
+To insert the admin/admin login crediential based on the provided salt in the default configuration do the following (When Prompted for password enter **root** if you stick to the default configuration):
 ```
 ~/PROJECT_NAME » vagrant ssh
-~/vagrant » mysql -u DB_USER -D DB_NAME -p DB_PASS -e "INSERT INTO users (username, password) VALUES ('admin', 'ec5c5011157cfe93b4994ad2b4dde12b');"
+~/vagrant » mysql -u DB_USER -p DB_NAME -e "INSERT INTO users (username, password) VALUES ('admin', 'ec5c5011157cfe93b4994ad2b4dde12b');"
 ```
