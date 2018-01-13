@@ -35,11 +35,6 @@ Navigate to the `System Preferences > Security & Privacy` then click the Allow B
 
 ![Fix Installation](/readme/fix.jpg "Fix Installation")
 
-## Required Software
-[Install NPM and NodeJS](https://nodejs.org/en/)  
-[Install Vagrant](https://www.vagrantup.com/)  
-
-
 ## Install Composer
 ```
 ~ » php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -53,6 +48,10 @@ Navigate to the `System Preferences > Security & Privacy` then click the Allow B
 ~ » echo "export PATH="$PATH:/usr/local/bin"" >> ~/.bash_profile
 ~ » echo "alias composer=composer.phar" >> ~/.bash_profile
 ```
+
+## Install NPM and Vagrant
+[Install NPM and NodeJS](https://nodejs.org/en/)  
+[Install Vagrant](https://www.vagrantup.com/)  
 
 ---
 
